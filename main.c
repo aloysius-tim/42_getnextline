@@ -6,7 +6,7 @@
 /*   By: tkeynes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 14:53:15 by tkeynes           #+#    #+#             */
-/*   Updated: 2017/11/21 23:15:37 by tkeynes          ###   ########.fr       */
+/*   Updated: 2017/11/21 23:18:48 by tkeynes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int		main(void)
 	FILE *f = fopen("final.txt", "w");
 	FILE *f2 = fopen("final2.txt", "w");
 
-	filename = "test2.txt";
+	filename = "test1.txt";
 	fd = open(filename, O_RDONLY);
-	fd2 = open("test1.txt", O_RDONLY);
+	fd2 = open("test2.txt", O_RDONLY);
 
 	while (get_next_line(fd, &final))
 	{

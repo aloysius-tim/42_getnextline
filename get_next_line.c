@@ -6,7 +6,7 @@
 /*   By: tkeynes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:56:22 by tkeynes           #+#    #+#             */
-/*   Updated: 2017/11/21 23:17:06 by tkeynes          ###   ########.fr       */
+/*   Updated: 2017/11/21 23:19:41 by tkeynes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,7 @@ int		get_next_line(int const fd, char ** line)
 		//printf("\n------------------> Phase 1 - First round or empty buffer\n");
 		(*line) = read_buffer(fd);
 		if (!(*line))
-		{
-			free(*line);
-			*line = ft_strnew(1);
-			**line = 0;
 			return (0);
-		}
 	}
 
 	else if (!ft_strchr(current_elem->data, '\n') || !ft_strchr(current_elem->data, 0))
@@ -44,9 +39,7 @@ int		get_next_line(int const fd, char ** line)
 			free(current_elem->data);
 	}
 	else //separator in buffer
-	{
 		(*line) = ft_strdup(current_elem->data);
-	}
 	//printf("\nremaining -> \"%s\"\n", current_elem->data);
 	
 	if ((ft_strchr(*line, '\n')))
