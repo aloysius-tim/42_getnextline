@@ -6,13 +6,13 @@
 /*   By: tkeynes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:56:40 by tkeynes           #+#    #+#             */
-/*   Updated: 2017/11/21 20:18:29 by tkeynes          ###   ########.fr       */
+/*   Updated: 2017/11/21 23:09:40 by tkeynes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_GET_NEXT_LINE_H
 # define FT_GET_NEXT_LINE_H
-# define BUFF_SIZE 10
+# define BUFF_SIZE 3
 
 # include <stdio.h>
 # include <stdlib.h>

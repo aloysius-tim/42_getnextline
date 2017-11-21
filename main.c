@@ -6,7 +6,7 @@
 /*   By: tkeynes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 14:53:15 by tkeynes           #+#    #+#             */
-/*   Updated: 2017/11/21 22:20:32 by tkeynes          ###   ########.fr       */
+/*   Updated: 2017/11/21 23:15:37 by tkeynes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,36 @@ int		main(void)
 {
 	char *final;
 	char *filename;
-	int fd;
+	int fd, fd2;
+	t_list	*tmp;
+	(void)tmp;
 
 	FILE *f = fopen("final.txt", "w");
+	FILE *f2 = fopen("final2.txt", "w");
 
-	filename = "test1.txt";
+	filename = "test2.txt";
 	fd = open(filename, O_RDONLY);
+	fd2 = open("test1.txt", O_RDONLY);
 
 	while (get_next_line(fd, &final))
 	{
 		fprintf(f, "%s\n", final);
+		//free(final);
 		//printf("\n%smain -> \"%s\"\n", KRED,final);
 		//printf("%s", KNRM);
 	}
-//	while (1);
+	while (get_next_line(fd2, &final))
+	{
+		fprintf(f2, "%s\n", final);
+	}
+	/*while(fds->next)
+	{
+		tmp = fds->next;
+		free(fds->data);
+		free(fds);
+		fds = tmp;
+	}*/
+	//while (1);
 	/*get_next_line(fd, &final);
 	printf("\n%smain -> \"%s\"\n", KRED,final);
 	printf("%s", KNRM);
