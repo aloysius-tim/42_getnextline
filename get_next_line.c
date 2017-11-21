@@ -6,7 +6,7 @@
 /*   By: tkeynes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:56:22 by tkeynes           #+#    #+#             */
-/*   Updated: 2017/11/21 21:28:41 by tkeynes          ###   ########.fr       */
+/*   Updated: 2017/11/21 22:27:28 by tkeynes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,69 +29,40 @@ int		get_next_line(int const fd, char ** line)
 		(*line) = read_buffer(fd);
 		if (!(*line))
 		{
-			//free(*line);
+			free(*line);
 			*line = ft_strnew(1);
 			**line = 0;
 			return (0);
 		}
 		//free(current_elem->data);
-		current_elem->data = ft_strdup(ft_strchr(*line, '\n')) + 1;
-		*(ft_strchr(*line, '\n') + 1) = '\0';
 	}
 
 	else if (!ft_strchr(current_elem->data, '\n') || !ft_strchr(current_elem->data, 0))
 	{
 		//printf("\n------------------> Phase 2 - no separator in buffer\n");
-		(*line) = str_comb(current_elem->data, read_buffer(fd));
-		if (ft_strchr(*line, '\n'))
-		{
-			//free(current_elem->data);
-			current_elem->data = ft_strdup(ft_strchr(*line, '\n')) + 1;
-			*(ft_strchr(*line, '\n') + 1) = '\0';
-		}
-		else
+		(*line) = ft_strjoin(current_elem->data, read_buffer(fd));
+		if (!ft_strchr(*line, '\n'))
 			current_elem->data = 0;
-	}
-
-	else
-	{
-		//printf("\n------------------> Phase 3 - seperator in buffer\n");
-		(*line) = current_elem->data;
 		//free(current_elem->data);
-		current_elem->data = ft_strdup(ft_strchr(*line, '\n')) + 1;
-		*(ft_strchr(*line, '\n') + 1) = '\0';
 	}
+	else //separator in buffer
+		(*line) = ft_strdup(current_elem->data);
 	//printf("\nremaining -> \"%s\"\n", current_elem->data);
-	(*line)[ft_strlen(*line) - 1] = 0;
-
-	while (fds->next)
+	
+	if ((ft_strchr(*line, '\n')))
 	{
-		current_elem = fds->next;
+		free(current_elem->data);
+		current_elem->data = ft_strdup(ft_strchr(*line, '\n') + 1);
+		*(ft_strchr(*line, '\n')) = '\0';
+	}
+
+	/*while (current_elem->next)
+	{
+		current_elem = current_elem->next;
 		free(fds->data);
 		free(fds);
-	}
+	}*/
 	return (1);
-}
-
-char	*str_comb(char *str1, char *str2)
-{
-	int		size_sep_str2;
-	int		size_sep_str1;
-	char	*final;
-
-	size_sep_str2 = 0;
-	size_sep_str1 = 0;
-	if (str2)
-		while (str2[size_sep_str2] != '\n' && str2[size_sep_str2] != '\0')
-			size_sep_str2++;
-	while (str1[size_sep_str1] != '\n' && str1[size_sep_str1] != '\0')
-		size_sep_str1++;
-	if (!(final = (char *)malloc(sizeof(char) * (size_sep_str2 + ft_strlen(str2)))))
-		return (0);
-	ft_strcpy(final, str1);
-	ft_strcat(final, str2);
-	free(str2);
-	return (final);
 }
 
 t_list		*find_fd_list(int const fd)
@@ -131,16 +102,13 @@ char	*read_buffer(int const fd)
 		if (ret_read == 0)
 			return (0);
 		tmp = ft_strdup(final);
-		/*if (!final)
-			free(final);*/
 		if (!(final = (char *)malloc(sizeof(char) * (BUFF_SIZE + ft_strlen(tmp) + 1))))
 			return (0);
 		ft_strcpy(final, tmp);
 		ft_strcat(final, buffer);
 		free(tmp);
-		free(buffer);
 	}
 	//printf("\nFinal read_buffer -> \"%s\"\n", final);
-
+	free(buffer);
 	return (final);
 }

@@ -6,7 +6,7 @@
 /*   By: tkeynes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 14:53:15 by tkeynes           #+#    #+#             */
-/*   Updated: 2017/11/21 21:27:59 by tkeynes          ###   ########.fr       */
+/*   Updated: 2017/11/21 22:20:32 by tkeynes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		main(void)
 		//printf("\n%smain -> \"%s\"\n", KRED,final);
 		//printf("%s", KNRM);
 	}
-	//while (1);
+//	while (1);
 	/*get_next_line(fd, &final);
 	printf("\n%smain -> \"%s\"\n", KRED,final);
 	printf("%s", KNRM);
