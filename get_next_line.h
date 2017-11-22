@@ -6,13 +6,13 @@
 /*   By: tkeynes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:56:40 by tkeynes           #+#    #+#             */
-/*   Updated: 2017/11/21 23:09:40 by tkeynes          ###   ########.fr       */
+/*   Updated: 2017/11/22 16:22:14 by tkeynes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_GET_NEXT_LINE_H
 # define FT_GET_NEXT_LINE_H
-# define BUFF_SIZE 3
+# define BUFF_SIZE 4
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -30,7 +30,7 @@ typedef struct			s_fd
 static t_list	*fds;
 
 int		get_next_line(int const fds, char **line);
-char	*read_buffer(int const fd);
+int		read_buffer(int const fd, char **final);
 t_list	*find_fd_list(int const fd);
 char	*str_comb(char *str1, char *str2);
 
